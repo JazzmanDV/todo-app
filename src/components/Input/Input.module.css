@@ -1,0 +1,51 @@
+.flex-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input {
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-height: 48px;
+    padding: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    white-space: break-spaces;
+    resize: none;
+    border: solid 2px;
+    border-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    transition: 0.5s;
+}
+
+.input:hover,
+.input:focus {
+    border-color: var(--secondary-color);
+}
+
+.input:focus {
+    font-size: 20px;
+    outline: 0;
+}
+
+.create-button {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin-right: 7px;
+    background: transparent;
+    border: 0;
+}
+
+.create-icon {
+    transition: 0.5s;
+}
+
+.create-icon:hover {
+    fill: var(--secondary-color);
+}

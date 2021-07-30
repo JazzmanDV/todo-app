@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:root {
+    --primary-color: #4cc9f0;
+    --secondary-color: #4895ef;
+    --border-radius: 10px;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}

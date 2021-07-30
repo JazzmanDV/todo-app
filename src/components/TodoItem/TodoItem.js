@@ -1,6 +1,8 @@
 import React from "react";
 
-import "./TodoItem.css";
+import styles from "./TodoItem.module.css";
+
+import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 
 export default class TodoItem extends React.Component {
     listItemRef = React.createRef();
@@ -40,25 +42,27 @@ export default class TodoItem extends React.Component {
 
     render() {
         const todo = this.props.todo;
-        const classes = todo.isDone ? "done" : "";
+
+        const spanClassNames = [
+            styles.text,
+            todo.isDone ? styles.done : "",
+        ].join(" ");
 
         return (
-            <li ref={this.listItemRef}>
-                <label>
+            <li ref={this.listItemRef} className={styles["list-item"]}>
+                <label className={styles["list-item__inner"]}>
                     <input
                         type="checkbox"
                         checked={todo.isDone}
                         onChange={this.handleCheckboxChange}
+                        className={styles.checkbox}
                     ></input>
-                    <span className={classes}>{todo.text}</span>
-                    <button onClick={this.handleButtonClick}>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlnsXlink="http://www.w3.org/1999/xlink"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M 1.789062 -0.191406 L -0.191406 1.789062 L 10.019531 12 L -0.191406 22.210938 L 1.789062 24.191406 L 12 13.980469 L 22.210938 24.191406 L 24.191406 22.210938 L 13.980469 12 L 24.191406 1.789062 L 22.210938 -0.191406 L 12 10.019531 Z M 1.789062 -0.191406 " />
-                        </svg>
+                    <span className={spanClassNames}>{todo.text}</span>
+                    <button
+                        onClick={this.handleButtonClick}
+                        className={styles["delete-button"]}
+                    >
+                        <DeleteIcon className={styles["delete-icon"]} />
                     </button>
                 </label>
             </li>

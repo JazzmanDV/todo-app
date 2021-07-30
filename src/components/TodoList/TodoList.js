@@ -2,7 +2,7 @@ import React from "react";
 
 import TodoItem from "../TodoItem/TodoItem";
 
-import "./TodoList.css";
+import styles from "./TodoList.module.css";
 
 export default class TodoList extends React.Component {
     render() {
@@ -16,6 +16,10 @@ export default class TodoList extends React.Component {
             />
         ));
 
-        return <ul>{todoList}</ul>;
+        return (
+            <div className={styles["todo-list"]}>
+                <ul className={styles.list}>{todoList}</ul>
+            </div>
+        );
     }
 }

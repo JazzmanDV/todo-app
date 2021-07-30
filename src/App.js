@@ -6,7 +6,7 @@ import TodoList from "./components/TodoList/TodoList";
 
 import todos, { Todo } from "./todos";
 
-import "./App.css";
+import styles from "./App.module.css";
 
 export default class App extends React.Component {
     state = {
@@ -35,7 +35,7 @@ export default class App extends React.Component {
         const todosCount = this.state.todos.filter((val) => !val.isDone).length;
 
         return (
-            <div className="app">
+            <div className={styles.app}>
                 <Counter todosCount={todosCount} />
                 <Input onCreate={this.handleCreate} />
                 <TodoList
