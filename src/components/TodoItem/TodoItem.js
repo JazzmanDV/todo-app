@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import styles from "./TodoItem.module.css";
 
@@ -40,6 +41,19 @@ export default class TodoItem extends React.Component {
         }, timeoutDuration);
     };
 
+    componentDidMount() {
+        const listItem = this.listItemRef.current;
+        const listItemHeight = getComputedStyle(listItem).height;
+
+        requestAnimationFrame(() => {
+            listItem.style.height = 0;
+
+            requestAnimationFrame(() => {
+                listItem.style.height = listItemHeight;
+            });
+        });
+    }
+
     render() {
         const todo = this.props.todo;
 
@@ -49,6 +63,16 @@ export default class TodoItem extends React.Component {
         ].join(" ");
 
         return (
+            // <CSSTransition
+            //     in={true}
+            //     appear={true}
+            //     timeout={0}
+            //     classNames={{
+            //         appear: styles["list-item-appear"],
+            //         appearActive: styles["list-item-active"],
+            //         appearDone: styles["list-item"],
+            //     }}
+            // >
             <li ref={this.listItemRef} className={styles["list-item"]}>
                 <label className={styles["list-item__inner"]}>
                     <input
@@ -66,6 +90,7 @@ export default class TodoItem extends React.Component {
                     </button>
                 </label>
             </li>
+            // </CSSTransition>
         );
     }
 }

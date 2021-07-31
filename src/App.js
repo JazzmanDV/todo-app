@@ -20,8 +20,7 @@ export default class App extends React.Component {
     };
 
     handleCreate = (text) => {
-        const tempTodos = [...this.state.todos];
-        tempTodos.push(new Todo(text, false));
+        const tempTodos = [...this.state.todos, new Todo(text, false)];
         this.setState({ todos: tempTodos });
     };
 

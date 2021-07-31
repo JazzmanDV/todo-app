@@ -18,6 +18,10 @@ export default class Input extends React.Component {
         });
     }
 
+    componentWillUnmount() {
+        this.textareaRef.current.removeEventListener("input");
+    }
+
     handleButtonClick = (e) => {
         const inputText = this.textareaRef.current.value.trim();
 
