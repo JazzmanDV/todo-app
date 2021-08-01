@@ -31,15 +31,6 @@
     cursor: pointer;
 }
 
-.list-item-appear {
-    opacity: 0;
-}
-
-.list-item-done {
-    opacity: 1;
-    transition: 0.5s;
-}
-
 .text {
     position: relative;
     display: inline-block;
