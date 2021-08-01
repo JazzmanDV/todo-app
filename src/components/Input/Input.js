@@ -7,25 +7,18 @@ import { ReactComponent as CreateIcon } from "./create-icon.svg";
 export default class Input extends React.Component {
     textareaRef = React.createRef();
 
-    componentDidMount() {
-        const textarea = this.textareaRef.current;
-
-        const offset = textarea.offsetHeight - textarea.clientHeight;
-
-        textarea.addEventListener("input", (e) => {
-            e.target.style.height = "auto";
-            e.target.style.height = e.target.scrollHeight + offset + "px";
-        });
-    }
-
-    componentWillUnmount() {
-        this.textareaRef.current.removeEventListener("input");
-    }
+    autosize = (e) => {
+        const offset = e.target.offsetHeight - e.target.clientHeight;
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + offset + "px";
+    };
 
     handleButtonClick = (e) => {
-        const inputText = this.textareaRef.current.value.trim();
+        const textarea = this.textareaRef.current;
+        const inputText = textarea.value.trim();
 
-        this.textareaRef.current.value = "";
+        textarea.value = "";
+        textarea.style.height = "auto";
 
         if (!inputText) {
             return;
@@ -38,10 +31,11 @@ export default class Input extends React.Component {
         return (
             <div className={styles["flex-wrapper"]}>
                 <textarea
-                    ref={this.textareaRef}
                     placeholder="Введите задачу"
                     rows="1"
                     required
+                    ref={this.textareaRef}
+                    onInput={this.autosize}
                     className={styles.input}
                 ></textarea>
                 <button

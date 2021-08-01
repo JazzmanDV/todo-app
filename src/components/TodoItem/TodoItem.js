@@ -12,6 +12,12 @@ export default class TodoItem extends React.Component {
         this.props.onIsDoneChange(this.props.index);
     };
 
+    handleTransitionEnd = (e) => {
+        if (e.propertyName === "height") {
+            this.props.onDelete(this.props.index);
+        }
+    };
+
     handleButtonClick = (e) => {
         if (this.willBeDeleted) {
             return;
@@ -32,12 +38,7 @@ export default class TodoItem extends React.Component {
             });
         });
 
-        const timeoutDuration =
-            parseFloat(listItemStyle.transitionDuration.slice(0, -1)) * 1000;
-
-        setTimeout(() => {
-            this.props.onDelete(this.props.index);
-        }, timeoutDuration);
+        listItem.addEventListener("transitionend", this.handleTransitionEnd);
     };
 
     componentDidMount() {
@@ -51,6 +52,13 @@ export default class TodoItem extends React.Component {
                 listItem.style.height = listItemHeight;
             });
         });
+    }
+
+    componentWillUnmount() {
+        this.listItemRef.current.removeEventListener(
+            "transitionend",
+            this.handleTransitionEnd
+        );
     }
 
     render() {
@@ -70,7 +78,12 @@ export default class TodoItem extends React.Component {
                         onChange={this.handleCheckboxChange}
                         className={styles.checkbox}
                     ></input>
-                    <span className={spanClassNames}>{todo.text}</span>
+                    <span
+                        style={{ "white-space": "pre-line" }}
+                        className={spanClassNames}
+                    >
+                        {todo.text}
+                    </span>
                     <button
                         onClick={this.handleButtonClick}
                         className={styles["delete-button"]}
