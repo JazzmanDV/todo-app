@@ -55,19 +55,13 @@ export default class TodoItem extends React.Component {
     }
 
     componentWillUnmount() {
-        this.listItemRef.current.removeEventListener(
-            "transitionend",
-            this.handleTransitionEnd
-        );
+        this.listItemRef.current.removeEventListener("transitionend", this.handleTransitionEnd);
     }
 
     render() {
         const todo = this.props.todo;
 
-        const spanClassNames = [
-            styles.text,
-            todo.isDone ? styles.done : "",
-        ].join(" ");
+        const spanClassNames = [styles.text, todo.isDone ? styles.done : ""].join(" ");
 
         return (
             <li ref={this.listItemRef} className={styles["list-item"]}>
@@ -78,16 +72,8 @@ export default class TodoItem extends React.Component {
                         onChange={this.handleCheckboxChange}
                         className={styles.checkbox}
                     ></input>
-                    <span
-                        style={{ "white-space": "pre-line" }}
-                        className={spanClassNames}
-                    >
-                        {todo.text}
-                    </span>
-                    <button
-                        onClick={this.handleButtonClick}
-                        className={styles["delete-button"]}
-                    >
+                    <span className={spanClassNames}>{todo.text}</span>
+                    <button onClick={this.handleButtonClick} className={styles["delete-button"]}>
                         <DeleteIcon className={styles["delete-icon"]} />
                     </button>
                 </label>
