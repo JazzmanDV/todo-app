@@ -31,11 +31,9 @@ export default class App extends React.Component {
     };
 
     render() {
-        const todosCount = this.state.todos.filter((val) => !val.isDone).length;
-
         return (
             <div className={styles.app}>
-                <Counter todosCount={todosCount} />
+                <Counter todos={this.state.todos} />
                 <Input onCreate={this.handleCreate} />
                 <TodoList
                     todos={this.state.todos}

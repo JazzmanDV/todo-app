@@ -1,13 +1,14 @@
 import React from "react";
 
-import styles from "./Counter.module.css";
-
 export default class Counter extends React.Component {
     render() {
+        const todosCount = this.props.todos.filter((val) => !val.isDone).length;
+
         return (
-            <div className={styles.counter}>
-                Осталось выполнить: {this.props.todosCount}
-            </div>
+            <>
+                <div>Всего задач: {this.props.todos.length}</div>
+                <div>Осталось выполнить: {todosCount}</div>
+            </>
         );
     }
 }

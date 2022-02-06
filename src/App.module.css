@@ -1,5 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
 :root {
     --primary-color: #4cc9f0;
     --secondary-color: #4895ef;
@@ -9,6 +31,7 @@
 .app {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     align-items: center;
     max-width: 400px;
     margin: 0 auto;

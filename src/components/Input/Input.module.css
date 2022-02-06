@@ -1,20 +1,17 @@
 .flex-wrapper {
     display: flex;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10px;
+    padding-right: 7px;
 }
 
 .input {
-    box-sizing: border-box;
     flex-grow: 1;
     min-height: 48px;
     padding: 10px;
-    margin-right: 10px;
     overflow: hidden;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
     color: gray;
     white-space: break-spaces;
     resize: none;
@@ -35,10 +32,9 @@
 }
 
 .create-button {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     padding: 0;
-    margin-right: 7px;
     background: transparent;
     border: 0;
 }
