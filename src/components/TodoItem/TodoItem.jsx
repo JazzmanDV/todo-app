@@ -29,13 +29,10 @@ export default class TodoItem extends React.Component {
 
         const listItemHeight = listItemStyle.height;
 
+        listItem.style.border = 0;
+        listItem.style.height = listItemHeight;
         requestAnimationFrame(() => {
-            listItem.style.height = listItemHeight;
-            listItem.style.border = 0;
-
-            requestAnimationFrame(() => {
-                listItem.style.height = 0;
-            });
+            listItem.style.height = 0;
         });
 
         listItem.addEventListener("transitionend", this.handleTransitionEnd);
@@ -45,12 +42,9 @@ export default class TodoItem extends React.Component {
         const listItem = this.listItemRef.current;
         const listItemHeight = getComputedStyle(listItem).height;
 
+        listItem.style.height = 0;
         requestAnimationFrame(() => {
-            listItem.style.height = 0;
-
-            requestAnimationFrame(() => {
-                listItem.style.height = listItemHeight;
-            });
+            listItem.style.height = listItemHeight;
         });
     }
 
