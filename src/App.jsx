@@ -1,7 +1,7 @@
 import React from "react";
 
 import Counter from "./components/Counter/Counter";
-import Input from "./components/Input/Input";
+import TextInput from "./components/TextInput/TextInput";
 import TodoList from "./components/TodoList/TodoList";
 import Filter from "./components/Filter/Filter";
 
@@ -40,7 +40,7 @@ export default class App extends React.Component {
         return (
             <div className={"app"}>
                 <Counter todos={this.state.todos} />
-                <Input onCreate={this.handleCreate} />
+                <TextInput onCreate={this.handleCreate} />
                 <Filter onFilterChange={this.handleFilterChange} />
                 <TodoList
                     todos={this.state.todos}

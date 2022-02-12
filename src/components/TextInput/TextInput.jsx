@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Input.module.css";
+import styles from "./TextInput.module.css";
 
 import { ReactComponent as CreateIcon } from "./create-icon.svg";
 
