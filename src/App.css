@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+@import url(./variables.css);
+
 *,
 *::before,
 *::after {
@@ -22,10 +24,12 @@ select {
     font: inherit;
 }
 
-:root {
-    --primary-color: #4cc9f0;
-    --secondary-color: #4895ef;
-    --border-radius: 10px;
+.button {
+    padding: 0;
+    background: transparent;
+    outline: none;
+    border: 0;
+    cursor: pointer;
 }
 
 .app {
@@ -34,7 +38,7 @@ select {
     gap: 10px;
     align-items: center;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     font-family: "Roboto", sans-serif;
     font-size: 20px;
 }

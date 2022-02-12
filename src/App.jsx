@@ -7,7 +7,7 @@ import Filter from "./components/Filter/Filter";
 
 import todos, { Todo } from "./todos";
 
-import styles from "./App.module.css";
+import "./App.css";
 
 export default class App extends React.Component {
     state = {
@@ -38,7 +38,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className={styles.app}>
+            <div className={"app"}>
                 <Counter todos={this.state.todos} />
                 <Input onCreate={this.handleCreate} />
                 <Filter onFilterChange={this.handleFilterChange} />

@@ -38,7 +38,7 @@ export default class Input extends React.Component {
                     ref={this.textareaRef}
                     onInput={this.autosize}
                 ></textarea>
-                <button onClick={this.handleButtonClick} className={styles["create-button"]}>
+                <button onClick={this.handleButtonClick} className={`button ${styles["create-button"]}`}>
                     <CreateIcon className={styles["create-icon"]} />
                 </button>
             </div>

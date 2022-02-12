@@ -98,7 +98,7 @@ export default class TodoItem extends React.Component {
                         className={styles.checkbox}
                     ></input>
                     <span className={spanClassNames}>{todo.text}</span>
-                    <button onClick={this.handleButtonClick} className={styles["delete-button"]}>
+                    <button onClick={this.handleButtonClick} className={`button ${styles["delete-button"]}`}>
                         <DeleteIcon className={styles["delete-icon"]} />
                     </button>
                 </label>
