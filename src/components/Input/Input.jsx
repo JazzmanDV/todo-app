@@ -34,9 +34,9 @@ export default class Input extends React.Component {
                     placeholder="Введите задачу"
                     rows="1"
                     required
+                    className={styles.input}
                     ref={this.textareaRef}
                     onInput={this.autosize}
-                    className={styles.input}
                 ></textarea>
                 <button onClick={this.handleButtonClick} className={styles["create-button"]}>
                     <CreateIcon className={styles["create-icon"]} />

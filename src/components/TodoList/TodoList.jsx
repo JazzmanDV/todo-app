@@ -6,15 +6,31 @@ import styles from "./TodoList.module.css";
 
 export default class TodoList extends React.Component {
     render() {
-        const todoList = this.props.todos.map((todo, index) => (
-            <TodoItem
-                key={todo.id}
-                todo={todo}
-                index={index}
-                onIsDoneChange={this.props.onIsDoneChange}
-                onDelete={this.props.onDelete}
-            />
-        ));
+        const todos = this.props.todos;
+        const filter = this.props.filter;
+
+        const todoList = todos.map((todo, index) => {
+            let visible = false;
+            if (filter === "all") {
+                visible = true;
+            }
+            if (filter === "done" && todo.isDone) {
+                visible = true;
+            }
+            if (filter === "not done" && !todo.isDone) {
+                visible = true;
+            }
+            return (
+                <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    index={index}
+                    visible={visible}
+                    onIsDoneChange={this.props.onIsDoneChange}
+                    onDelete={this.props.onDelete}
+                />
+            );
+        });
 
         return (
             <div className={styles["todo-list"]}>

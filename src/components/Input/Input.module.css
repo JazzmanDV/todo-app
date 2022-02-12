@@ -4,31 +4,26 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-right: 7px;
+    padding-right: 6px;
 }
 
 .input {
     flex-grow: 1;
-    min-height: 48px;
     padding: 10px;
     overflow: hidden;
     color: gray;
     white-space: break-spaces;
     resize: none;
-    border: solid 2px;
-    border-color: var(--primary-color);
+    outline: none;
+    border: 2px solid var(--primary-color);
     border-radius: var(--border-radius);
     transition: 0.5s;
 }
 
 .input:hover,
-.input:focus {
-    border-color: var(--secondary-color);
-}
-
-.input:focus {
+.input:focus-visible {
     color: black;
-    outline: 0;
+    border-color: var(--secondary-color);
 }
 
 .create-button {
@@ -36,13 +31,16 @@
     height: 28px;
     padding: 0;
     background: transparent;
+    outline: none;
     border: 0;
+    cursor: pointer;
 }
 
 .create-icon {
     transition: 0.5s;
 }
 
-.create-icon:hover {
+.create-button:hover .create-icon,
+.create-button:focus-visible .create-icon {
     fill: var(--secondary-color);
 }

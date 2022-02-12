@@ -5,8 +5,38 @@ import styles from "./TodoItem.module.css";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 
 export default class TodoItem extends React.Component {
-    listItemRef = React.createRef();
     willBeDeleted = false;
+
+    listItemRef = React.createRef();
+
+    state = {
+        visible: true,
+    };
+
+    show = () => {
+        const listItem = this.listItemRef.current;
+
+        const listItemHeight = getComputedStyle(listItem).height;
+
+        listItem.style.height = 0;
+        requestAnimationFrame(() => {
+            listItem.style.height = listItemHeight;
+        });
+    };
+
+    hide = (deleteAfterHide = false) => {
+        const listItem = this.listItemRef.current;
+
+        listItem.style.border = 0;
+        listItem.style.height = getComputedStyle(listItem).height;
+        requestAnimationFrame(() => {
+            listItem.style.height = 0;
+        });
+
+        if (deleteAfterHide) {
+            listItem.addEventListener("transitionend", this.handleTransitionEnd);
+        }
+    };
 
     handleCheckboxChange = (e) => {
         this.props.onIsDoneChange(this.props.index);
@@ -22,30 +52,31 @@ export default class TodoItem extends React.Component {
         if (this.willBeDeleted) {
             return;
         }
+
         this.willBeDeleted = true;
 
-        const listItem = this.listItemRef.current;
-        const listItemStyle = getComputedStyle(listItem);
-
-        const listItemHeight = listItemStyle.height;
-
-        listItem.style.border = 0;
-        listItem.style.height = listItemHeight;
-        requestAnimationFrame(() => {
-            listItem.style.height = 0;
-        });
-
-        listItem.addEventListener("transitionend", this.handleTransitionEnd);
+        this.hide(true);
     };
 
     componentDidMount() {
-        const listItem = this.listItemRef.current;
-        const listItemHeight = getComputedStyle(listItem).height;
+        if (this.props.visible) {
+            this.show();
+        }
+        if (!this.props.visible) {
+            this.setState({ visible: false });
+        }
+    }
 
-        listItem.style.height = 0;
-        requestAnimationFrame(() => {
-            listItem.style.height = listItemHeight;
-        });
+    componentDidUpdate(prevProps) {
+        if (prevProps.visible !== this.props.visible) {
+            if (this.props.visible) {
+                this.setState({ visible: true }, () => this.show());
+            }
+            if (!this.props.visible) {
+                this.hide();
+                this.listItemRef.current.addEventListener("transitionend", () => this.setState({ visible: false }));
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -57,7 +88,7 @@ export default class TodoItem extends React.Component {
 
         const spanClassNames = [styles.text, todo.isDone ? styles.done : ""].join(" ");
 
-        return (
+        return this.state.visible ? (
             <li ref={this.listItemRef} className={styles["list-item"]}>
                 <label className={styles["list-item__inner"]}>
                     <input
@@ -72,6 +103,6 @@ export default class TodoItem extends React.Component {
                     </button>
                 </label>
             </li>
-        );
+        ) : null;
     }
 }

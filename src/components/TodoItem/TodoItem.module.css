@@ -3,8 +3,8 @@
     overflow: hidden;
     list-style: none;
     cursor: pointer;
+    margin-bottom: 1px;
     background-color: var(--primary-color);
-    border-bottom: 1px solid;
     transition: 0.5s;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .list-item:last-child {
-    border-bottom: 0;
+    margin-bottom: 0;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -67,19 +67,20 @@
 }
 
 .delete-button {
-    flex-shrink: 0;
     width: 20px;
     height: 20px;
     padding: 0;
-    margin: 0;
     background: transparent;
+    outline: none;
     border: 0;
+    cursor: pointer;
 }
 
 .delete-icon {
     transition: 0.5s;
 }
 
-.delete-icon:hover {
+.delete-button:hover .delete-icon,
+.delete-button:focus-visible .delete-icon {
     fill: #fff;
 }
