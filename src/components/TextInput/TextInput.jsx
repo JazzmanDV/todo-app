@@ -4,17 +4,17 @@ import styles from "./TextInput.module.css";
 
 import { ReactComponent as CreateIcon } from "./create-icon.svg";
 
-export default class Input extends React.Component {
-    textareaRef = React.createRef();
+const TextInput = (props) => {
+    const textareaRef = React.createRef();
 
-    autosize = (e) => {
+    const autosize = (e) => {
         const offset = e.target.offsetHeight - e.target.clientHeight;
         e.target.style.height = "auto";
         e.target.style.height = e.target.scrollHeight + offset + "px";
     };
 
-    handleButtonClick = (e) => {
-        const textarea = this.textareaRef.current;
+    const handleButtonClick = (e) => {
+        const textarea = textareaRef.current;
         const inputText = textarea.value.trim();
 
         textarea.value = "";
@@ -24,24 +24,24 @@ export default class Input extends React.Component {
             return;
         }
 
-        this.props.onCreate(inputText);
+        props.onCreate(inputText);
     };
 
-    render() {
-        return (
-            <div className={styles["flex-wrapper"]}>
-                <textarea
-                    placeholder="Введите задачу"
-                    rows="1"
-                    required
-                    className={styles.input}
-                    ref={this.textareaRef}
-                    onInput={this.autosize}
-                ></textarea>
-                <button onClick={this.handleButtonClick} className={`button ${styles["create-button"]}`}>
-                    <CreateIcon className={styles["create-icon"]} />
-                </button>
-            </div>
-        );
-    }
-}
+    return (
+        <div className={styles["flex-wrapper"]}>
+            <textarea
+                placeholder="Введите задачу"
+                rows="1"
+                required
+                className={styles.input}
+                ref={textareaRef}
+                onInput={autosize}
+            ></textarea>
+            <button onClick={handleButtonClick} className={`button ${styles["create-button"]}`}>
+                <CreateIcon className={styles["create-icon"]} />
+            </button>
+        </div>
+    );
+};
+
+export default TextInput;
