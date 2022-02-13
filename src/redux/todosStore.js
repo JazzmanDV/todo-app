@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 
-import { todos, Todo } from "/src/todos";
+import { todos, Todo } from "./todos";
 
 function todosReducer(state = { todos: todos, filter: "all" }, action) {
     switch (action.type) {
