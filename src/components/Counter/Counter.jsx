@@ -1,11 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Counter = (props) => {
-    const todosCount = props.todos.filter((val) => !val.isDone).length;
+const Counter = () => {
+    const todos = useSelector((state) => state.todos);
+
+    const todosCount = todos.filter((val) => !val.isDone).length;
 
     return (
         <>
-            <div>Всего задач: {props.todos.length}</div>
+            <div>Всего задач: {todos.length}</div>
             <div>Осталось выполнить: {todosCount}</div>
         </>
     );

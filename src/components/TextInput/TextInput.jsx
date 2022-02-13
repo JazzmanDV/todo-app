@@ -1,11 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import styles from "./TextInput.module.css";
 
 import { ReactComponent as CreateIcon } from "./create-icon.svg";
 
-const TextInput = (props) => {
+const TextInput = () => {
     const textareaRef = React.createRef();
+
+    const dispatch = useDispatch();
 
     const autosize = (e) => {
         const offset = e.target.offsetHeight - e.target.clientHeight;
@@ -24,7 +27,7 @@ const TextInput = (props) => {
             return;
         }
 
-        props.onCreate(inputText);
+        dispatch({ type: "todos/add", payload: inputText });
     };
 
     return (

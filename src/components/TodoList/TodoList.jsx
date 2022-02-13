@@ -1,12 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import TodoItem from "../TodoItem/TodoItem";
 
 import styles from "./TodoList.module.css";
 
-const TodoList = (props) => {
-    const todos = props.todos;
-    const filter = props.filter;
+const TodoList = () => {
+    const todos = useSelector((state) => state.todos);
+    const filter = useSelector((state) => state.filter);
 
     const todoList = todos.map((todo, index) => {
         let visible = false;
@@ -19,16 +20,7 @@ const TodoList = (props) => {
         if (filter === "not done" && !todo.isDone) {
             visible = true;
         }
-        return (
-            <TodoItem
-                key={todo.id}
-                todo={todo}
-                index={index}
-                visible={visible}
-                onIsDoneChange={props.onIsDoneChange}
-                onDelete={props.onDelete}
-            />
-        );
+        return <TodoItem key={todo.id} index={index} visible={visible} />;
     });
 
     return (

@@ -1,10 +1,14 @@
 import React, { useState, createRef, useEffect, useLayoutEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./TodoItem.module.css";
 
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
 
 const TodoItem = (props) => {
+    const todo = useSelector((state) => state.todos[props.index]);
+    const dispatch = useDispatch();
+
     let willBeDeleted = false;
 
     const listItemRef = createRef();
@@ -31,12 +35,14 @@ const TodoItem = (props) => {
         });
 
         if (deleteAfterHide) {
-            addTransitionEndListener(listItem, "height", () => props.onDelete(props.index));
+            addTransitionEndListener(listItem, "height", () =>
+                dispatch({ type: "todos/remove", payload: props.index })
+            );
         }
     };
 
     const handleCheckboxChange = (e) => {
-        props.onIsDoneChange(props.index);
+        dispatch({ type: "todos/changeState", payload: props.index });
     };
 
     const addTransitionEndListener = (target, property, callback) => {
@@ -75,7 +81,6 @@ const TodoItem = (props) => {
         }
     }, [visible]);
 
-    const todo = props.todo;
     const spanClassNames = [styles.text, todo.isDone ? styles.done : ""].join(" ");
 
     return visible ? (

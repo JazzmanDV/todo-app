@@ -1,13 +1,17 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./Filter.module.css";
 
-const Filter = (props) => {
+const Filter = () => {
+    const filter = useSelector((state) => state.filter);
+    const dispatch = useDispatch();
+
     return (
         <select
-            value={props.filter}
+            value={filter}
             className={styles["filter-select"]}
-            onChange={(e) => props.onFilterChange(e.target.value)}
+            onChange={(e) => dispatch({ type: "filter/changeState", payload: e.target.value })}
         >
             <option value="all">Все</option>
             <option value="done">Выполненные</option>
