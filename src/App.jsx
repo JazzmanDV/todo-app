@@ -1,54 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Counter from "./components/Counter/Counter";
 import TextInput from "./components/TextInput/TextInput";
 import TodoList from "./components/TodoList/TodoList";
 import Filter from "./components/Filter/Filter";
 
-import todos, { Todo } from "./todos";
+import { todosArray, Todo } from "./todos";
 
 import "./App.css";
 
-export default class App extends React.Component {
-    state = {
-        todos: todos,
-        filter: "all",
-    };
+const App = (props) => {
+    const [todos, setTodos] = useState(todosArray);
+    const [filter, setFilter] = useState("all");
 
-    handleIsDoneChange = (index) => {
-        const tempTodos = [...this.state.todos];
+    const handleIsDoneChange = (index) => {
+        const tempTodos = [...todos];
         tempTodos[index].isDone = !tempTodos[index].isDone;
-        this.setState({ todos: tempTodos });
+        setTodos(tempTodos);
     };
 
-    handleCreate = (text) => {
-        const tempTodos = [...this.state.todos, new Todo(text, false)];
-        this.setState({ todos: tempTodos });
+    const handleCreate = (text) => {
+        const tempTodos = [...todos, new Todo(text, false)];
+        setTodos(tempTodos);
     };
 
-    handleDelete = (index) => {
-        const tempTodos = [...this.state.todos];
+    const handleDelete = (index) => {
+        const tempTodos = [...todos];
         tempTodos.splice(index, 1);
-        this.setState({ todos: tempTodos });
+        setTodos(tempTodos);
     };
 
-    handleFilterChange = (filter) => {
-        this.setState({ filter: filter });
+    const handleFilterChange = (filter) => {
+        setFilter(filter);
     };
 
-    render() {
-        return (
-            <div className={"app"}>
-                <Counter todos={this.state.todos} />
-                <TextInput onCreate={this.handleCreate} />
-                <Filter onFilterChange={this.handleFilterChange} />
-                <TodoList
-                    todos={this.state.todos}
-                    filter={this.state.filter}
-                    onIsDoneChange={this.handleIsDoneChange}
-                    onDelete={this.handleDelete}
-                />
-            </div>
-        );
-    }
-}
+    return (
+        <div className={"app"}>
+            <Counter todos={todos} />
+            <TextInput onCreate={handleCreate} />
+            <Filter onFilterChange={handleFilterChange} />
+            <TodoList todos={todos} filter={filter} onIsDoneChange={handleIsDoneChange} onDelete={handleDelete} />
+        </div>
+    );
+};
+
+export default App;

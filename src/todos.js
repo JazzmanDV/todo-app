@@ -9,11 +9,9 @@ export class Todo {
     }
 }
 
-const todos = [
+export const todosArray = [
     new Todo("Помыть посуду", false),
     new Todo("Написать книгу", true),
     new Todo("Написать вторую книгу", true),
     new Todo("Посмотреть телевизор", true),
 ];
-
-export default todos;
