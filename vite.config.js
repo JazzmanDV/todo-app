@@ -28,5 +28,8 @@ export default defineConfig({
                 }),
             ],
         },
+        modules: {
+            localsConvention: "dashesOnly",
+        },
     },
 });

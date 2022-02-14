@@ -31,7 +31,7 @@ const TextInput = () => {
     };
 
     return (
-        <div className={styles["flex-wrapper"]}>
+        <div className={styles.flexWrapper}>
             <textarea
                 placeholder="Введите задачу"
                 rows="1"
@@ -40,8 +40,8 @@ const TextInput = () => {
                 ref={textareaRef}
                 onInput={autosize}
             ></textarea>
-            <button onClick={handleButtonClick} className={`button ${styles["create-button"]}`}>
-                <CreateIcon className={styles["create-icon"]} />
+            <button onClick={handleButtonClick} className={`button ${styles.createButton}`}>
+                <CreateIcon className={styles.createIcon} />
             </button>
         </div>
     );

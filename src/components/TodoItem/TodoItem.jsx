@@ -84,8 +84,8 @@ const TodoItem = (props) => {
     const spanClassNames = [styles.text, todo.isDone ? styles.done : ""].join(" ");
 
     return visible ? (
-        <li ref={listItemRef} className={styles["list-item"]}>
-            <label className={styles["list-item__inner"]}>
+        <li ref={listItemRef} className={styles.listItem}>
+            <label className={styles.listItem__inner}>
                 <input
                     type="checkbox"
                     checked={todo.isDone}
@@ -93,8 +93,8 @@ const TodoItem = (props) => {
                     className={styles.checkbox}
                 ></input>
                 <span className={spanClassNames}>{todo.text}</span>
-                <button onClick={handleDeleteButtonClick} className={`button ${styles["delete-button"]}`}>
-                    <DeleteIcon className={styles["delete-icon"]} />
+                <button onClick={handleDeleteButtonClick} className={`button ${styles.deleteButton}`}>
+                    <DeleteIcon className={styles.deleteIcon} />
                 </button>
             </label>
         </li>

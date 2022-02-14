@@ -10,7 +10,7 @@ const Filter = () => {
     return (
         <select
             value={filter}
-            className={styles["filter-select"]}
+            className={styles.filterSelect}
             onChange={(e) => dispatch({ type: "filter/changeState", payload: e.target.value })}
         >
             <option value="all">Все</option>

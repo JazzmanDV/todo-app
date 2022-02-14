@@ -24,7 +24,7 @@ const TodoList = () => {
     });
 
     return (
-        <div className={styles["todo-list"]}>
+        <div className={styles.todoList}>
             <ul className={styles.list}>{todoList}</ul>
         </div>
     );
