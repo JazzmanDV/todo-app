@@ -42,7 +42,7 @@ const TodoItem = (props) => {
     };
 
     const handleCheckboxChange = (e) => {
-        dispatch({ type: "todos/changeState", payload: props.index });
+        dispatch({ type: "todos/toggle", payload: props.index });
     };
 
     const addTransitionEndListener = (target, property, callback) => {

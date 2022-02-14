@@ -11,7 +11,7 @@ const Filter = () => {
         <select
             value={filter}
             className={styles.filterSelect}
-            onChange={(e) => dispatch({ type: "filter/changeState", payload: e.target.value })}
+            onChange={(e) => dispatch({ type: "filter/set", payload: e.target.value })}
         >
             <option value="all">Все</option>
             <option value="done">Выполненные</option>

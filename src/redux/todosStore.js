@@ -1,35 +1,41 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
 import { todos, Todo } from "./todos";
 
-function todosReducer(state = { todos: todos, filter: "all" }, action) {
+const filterReducer = (state = "all", action) => {
     switch (action.type) {
-        case "todos/add": {
-            const text = action.payload;
-            const tempTodos = [...state.todos, new Todo(text, false)];
-            return { ...state, todos: tempTodos };
-        }
-        case "todos/remove": {
-            const tempTodos = [...state.todos];
-            const index = action.payload;
-            tempTodos.splice(index, 1);
-            return { ...state, todos: tempTodos };
-        }
-        case "todos/changeState": {
-            const tempTodos = [...state.todos];
-            const index = action.payload;
-            tempTodos[index].isDone = !tempTodos[index].isDone;
-            return { ...state, todos: tempTodos };
-        }
-        case "filter/changeState": {
-            return { ...state, filter: action.payload };
+        case "filter/set": {
+            return action.payload;
         }
         default: {
             return state;
         }
     }
-}
+};
 
-const todosStore = createStore(todosReducer);
+const todosReducer = (state = todos, action) => {
+    switch (action.type) {
+        case "todos/add": {
+            return [...state, new Todo(action.payload, false)];
+        }
+        case "todos/remove": {
+            const tempTodos = [...state];
+            const index = action.payload;
+            tempTodos.splice(index, 1);
+            return tempTodos;
+        }
+        case "todos/toggle": {
+            const tempTodos = [...state];
+            const index = action.payload;
+            tempTodos[index].isDone = !tempTodos[index].isDone;
+            return tempTodos;
+        }
+        default: {
+            return state;
+        }
+    }
+};
+
+const todosStore = createStore(combineReducers({ todos: todosReducer, filter: filterReducer }));
 
 export default todosStore;
