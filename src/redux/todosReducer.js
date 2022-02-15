@@ -26,9 +26,13 @@ export const todosReducer = (state = initialTodos, action) => {
             return newTodos;
         }
         case "todos/toggle": {
-            const newTodos = [...state];
-            const index = action.payload;
-            newTodos[index].isDone = !newTodos[index].isDone;
+            const newTodos = state.map((todo, index) => {
+                if (index !== action.payload) {
+                    return todo;
+                }
+
+                return { ...todo, isDone: !todo.isDone };
+            });
             saveToLocalStorage(TODOS_KEY, newTodos);
             return newTodos;
         }
