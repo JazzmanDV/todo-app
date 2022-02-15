@@ -1,15 +1,12 @@
-let id = 0;
-
 export class Todo {
     constructor(text, isDone = false) {
-        this.id = id++;
+        this.id = Date.now().toString() + text + isDone.toString();
         this.text = text;
         this.isDone = isDone;
-        this.date = new Date();
     }
 }
 
-export const todos = [
+export const todosSamples = [
     new Todo("Помыть посуду", false),
     new Todo("Написать книгу", true),
     new Todo("Написать вторую книгу", true),
