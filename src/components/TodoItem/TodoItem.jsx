@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./TodoItem.module.css";
 
-import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
+import { ReactComponent as RemoveIcon } from "./remove-icon.svg";
 
 const TodoItem = (props) => {
     const todo = useSelector((state) => state.todos[props.index]);
@@ -93,8 +93,8 @@ const TodoItem = (props) => {
                     className={styles.checkbox}
                 ></input>
                 <span className={spanClassNames}>{todo.text}</span>
-                <button onClick={handleDeleteButtonClick} className={`button ${styles.deleteButton}`}>
-                    <DeleteIcon className={styles.deleteIcon} />
+                <button onClick={handleDeleteButtonClick} className={`button ${styles.removeButton}`}>
+                    <RemoveIcon className={styles.removeIcon} />
                 </button>
             </label>
         </li>

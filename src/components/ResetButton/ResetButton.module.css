@@ -1,0 +1,12 @@
+.reset-button {
+    width: 30px;
+}
+
+.reset-icon {
+    transition: var(--transition-duration);
+}
+
+.reset-button:hover .reset-icon,
+.reset-button:focus-visible .reset-icon {
+    stroke: var(--secondary-color);
+}

@@ -32,11 +32,11 @@ export const todosReducer = (state = initialTodos, action) => {
             saveToLocalStorage(TODOS_KEY, newTodos);
             return newTodos;
         }
-        // case "todos/resetToSamples": {
-        //     const newTodos = [...todosSamples];
-        //     saveToLocalStorage(TODOS_KEY, newTodos);
-        //     return newTodos;
-        // }
+        case "todos/resetToSamples": {
+            const newTodos = [...todosSamples];
+            saveToLocalStorage(TODOS_KEY, newTodos);
+            return newTodos;
+        }
         default: {
             return state;
         }

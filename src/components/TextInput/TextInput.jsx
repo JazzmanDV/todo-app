@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import styles from "./TextInput.module.css";
 
-import { ReactComponent as CreateIcon } from "./create-icon.svg";
+import { ReactComponent as AddIcon } from "./add-icon.svg";
 
 const TextInput = () => {
     const textareaRef = React.createRef();
@@ -40,8 +40,8 @@ const TextInput = () => {
                 ref={textareaRef}
                 onInput={autosize}
             ></textarea>
-            <button onClick={handleButtonClick} className={`button ${styles.createButton}`}>
-                <CreateIcon className={styles.createIcon} />
+            <button onClick={handleButtonClick} className={`button ${styles.addButton}`}>
+                <AddIcon className={styles.addIcon} />
             </button>
         </div>
     );

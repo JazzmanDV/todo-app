@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-right: 6px;
+    padding-right: 2px;
 }
 
 .input {
@@ -26,16 +26,15 @@
     border-color: var(--secondary-color);
 }
 
-.create-button {
-    width: 28px;
-    height: 28px;
+.add-button {
+    width: 40px;
 }
 
-.create-icon {
+.add-icon {
     transition: var(--transition-duration);
 }
 
-.create-button:hover .create-icon,
-.create-button:focus-visible .create-icon {
-    fill: var(--secondary-color);
+.add-button:hover .add-icon,
+.add-button:focus-visible .add-icon {
+    stroke: var(--secondary-color);
 }

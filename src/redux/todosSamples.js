@@ -9,6 +9,6 @@ export class Todo {
 export const todosSamples = [
     new Todo("Помыть посуду", false),
     new Todo("Написать книгу", true),
-    new Todo("Написать вторую книгу", true),
+    new Todo("Написать вторую книгу", false),
     new Todo("Посмотреть телевизор", true),
 ];

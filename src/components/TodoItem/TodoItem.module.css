@@ -66,16 +66,15 @@
     width: 100%;
 }
 
-.delete-button {
-    width: 20px;
-    height: 20px;
+.remove-button {
+    width: 25px;
 }
 
-.delete-icon {
+.remove-icon {
     transition: var(--transition-duration);
 }
 
-.delete-button:hover .delete-icon,
-.delete-button:focus-visible .delete-icon {
-    fill: #fff;
+.remove-button:hover .remove-icon,
+.remove-button:focus-visible .remove-icon {
+    stroke: #fff;
 }
