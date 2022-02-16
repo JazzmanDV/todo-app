@@ -35,14 +35,12 @@ const TodoItem = (props) => {
         });
 
         if (deleteAfterHide) {
-            addTransitionEndListener(listItem, "height", () =>
-                dispatch({ type: "todos/remove", payload: props.index })
-            );
+            addTransitionEndListener(listItem, "height", () => dispatch({ type: "todos/remove", payload: todo.id }));
         }
     };
 
     const handleCheckboxChange = (e) => {
-        dispatch({ type: "todos/toggle", payload: props.index });
+        dispatch({ type: "todos/toggle", payload: todo.id });
     };
 
     const addTransitionEndListener = (target, property, callback) => {

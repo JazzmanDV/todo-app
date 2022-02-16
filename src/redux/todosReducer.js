@@ -19,15 +19,13 @@ export const todosReducer = (state = initialTodos, action) => {
             return newTodos;
         }
         case "todos/remove": {
-            const newTodos = [...state];
-            const index = action.payload;
-            newTodos.splice(index, 1);
+            const newTodos = state.filter((todo) => todo.id !== action.payload);
             saveToLocalStorage(TODOS_KEY, newTodos);
             return newTodos;
         }
         case "todos/toggle": {
             const newTodos = state.map((todo, index) => {
-                if (index !== action.payload) {
+                if (todo.id !== action.payload) {
                     return todo;
                 }
 
