@@ -1,9 +1,14 @@
 .reset-button {
-    width: 30px;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    border: 0;
+    cursor: pointer;
 }
 
 .reset-icon {
     transition: var(--transition-duration);
+    width: 30px;
 }
 
 .reset-button:hover .reset-icon,

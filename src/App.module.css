@@ -24,14 +24,6 @@ select {
     font: inherit;
 }
 
-.button {
-    padding: 0;
-    background: transparent;
-    outline: none;
-    border: 0;
-    cursor: pointer;
-}
-
 .app {
     display: flex;
     flex-direction: column;
@@ -41,4 +33,22 @@ select {
     margin: 50px auto 0 auto;
     font-family: "Roboto", sans-serif;
     font-size: 20px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.reset-button-wrapper {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.counter-wrapper {
+    text-align: center;
 }

@@ -27,10 +27,14 @@
 }
 
 .add-button {
-    width: 40px;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    border: 0;
 }
 
 .add-icon {
+    width: 40px;
     transition: var(--transition-duration);
 }
 

@@ -67,10 +67,15 @@
 }
 
 .remove-button {
-    width: 25px;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    border: 0;
+    cursor: pointer;
 }
 
 .remove-icon {
+    width: 25px;
     transition: var(--transition-duration);
 }
 
