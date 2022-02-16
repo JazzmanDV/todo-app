@@ -31,6 +31,7 @@
     background: transparent;
     outline: none;
     border: 0;
+    cursor: pointer;
 }
 
 .add-icon {

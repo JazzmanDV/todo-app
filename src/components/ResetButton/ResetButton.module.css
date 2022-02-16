@@ -8,7 +8,7 @@
 
 .reset-icon {
     transition: var(--transition-duration);
-    width: 30px;
+    width: 35px;
 }
 
 .reset-button:hover .reset-icon,
