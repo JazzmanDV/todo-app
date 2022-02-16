@@ -44,7 +44,7 @@ select {
 
 .reset-button-wrapper {
     position: absolute;
-    right: 7px;
+    right: 2px;
     top: 50%;
     transform: translateY(-50%);
 }
