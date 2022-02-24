@@ -19,9 +19,11 @@ const TodoItem = (props) => {
 
         const listItemHeight = getComputedStyle(listItem).height;
 
-        listItem.style.height = 0;
         requestAnimationFrame(() => {
-            listItem.style.height = listItemHeight;
+            listItem.style.height = 0;
+            requestAnimationFrame(() => {
+                listItem.style.height = listItemHeight;
+            });
         });
     };
 
