@@ -11,7 +11,6 @@ export default defineConfig({
     plugins: [
         react(),
         legacy({
-            targets: ["cover 99.5%"],
             additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
         }),
         svgr(),
