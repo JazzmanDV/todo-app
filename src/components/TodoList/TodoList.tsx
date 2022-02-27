@@ -1,13 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { State } from "../../redux/todosStore";
 
 import TodoItem from "../TodoItem/TodoItem";
 
 import styles from "./TodoList.module.css";
 
 const TodoList = () => {
-    const todos = useSelector((state) => state.todos);
-    const filter = useSelector((state) => state.filter);
+    const todos = useSelector((state: State) => state.todos);
+    const filter = useSelector((state: State) => state.filter);
 
     const todoList = todos.map((todo, index) => {
         let visible = false;

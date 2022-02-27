@@ -1,26 +1,38 @@
-import React, { useState, createRef, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect, TransitionEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./TodoItem.module.css";
 
 import { ReactComponent as RemoveIcon } from "./remove-icon.svg";
 
-const TodoItem = (props) => {
-    const todo = useSelector((state) => state.todos[props.index]);
+import { State } from "../../redux/todosStore";
+import { TodosActionTypes } from "../../redux/todosReducer";
+
+type TodoItemProps = {
+    index: number;
+    visible: boolean;
+};
+
+const TodoItem = (props: TodoItemProps) => {
+    const todo = useSelector((state: State) => state.todos[props.index]);
     const dispatch = useDispatch();
 
     let willBeDeleted = false;
 
-    const listItemRef = createRef();
+    const listItemRef = useRef<HTMLLIElement>(null);
     const [visible, setVisible] = useState(props.visible);
 
     const show = () => {
         const listItem = listItemRef.current;
 
+        if (!listItem) {
+            return;
+        }
+
         const listItemHeight = getComputedStyle(listItem).height;
 
         requestAnimationFrame(() => {
-            listItem.style.height = 0;
+            listItem.style.height = "0";
             requestAnimationFrame(() => {
                 listItem.style.height = listItemHeight;
             });
@@ -30,32 +42,36 @@ const TodoItem = (props) => {
     const hide = (deleteAfterHide = false) => {
         const listItem = listItemRef.current;
 
-        listItem.style.border = 0;
+        if (!listItem) {
+            return;
+        }
+
+        listItem.style.border = "0";
         listItem.style.height = getComputedStyle(listItem).height;
         requestAnimationFrame(() => {
-            listItem.style.height = 0;
+            listItem.style.height = "0";
         });
 
         if (deleteAfterHide) {
-            addTransitionEndListener(listItem, "height", () => dispatch({ type: "todos/remove", payload: todo.id }));
+            addTransitionEndListener(listItem, "height", () => dispatch({ type: TodosActionTypes.REMOVE, payload: todo.id }));
         }
     };
 
-    const handleCheckboxChange = (e) => {
-        dispatch({ type: "todos/toggle", payload: todo.id });
+    const handleCheckboxChange = () => {
+        dispatch({ type: TodosActionTypes.TOGGLE, payload: todo.id });
     };
 
-    const addTransitionEndListener = (target, property, callback) => {
-        const eventListenerCallback = (e) => {
+    const addTransitionEndListener = (target: HTMLLIElement, property: string, callback: () => void) => {
+        const eventListenerCallback = (e: TransitionEvent<typeof target>) => {
             if (e.propertyName === property) {
                 callback();
-                e.target.removeEventListener("transitionend", eventListenerCallback);
+                e.target.removeEventListener("transitionend", eventListenerCallback as unknown as EventListener);
             }
         };
-        target.addEventListener("transitionend", eventListenerCallback);
+        target.addEventListener("transitionend", eventListenerCallback as unknown as EventListener);
     };
 
-    const handleDeleteButtonClick = (e) => {
+    const handleDeleteButtonClick = () => {
         if (willBeDeleted) {
             return;
         }
@@ -70,6 +86,9 @@ const TodoItem = (props) => {
             setVisible(true);
         }
         if (visible && !props.visible) {
+            if (!listItemRef.current) {
+                return;
+            }
             hide();
             addTransitionEndListener(listItemRef.current, "height", () => setVisible(false));
         }

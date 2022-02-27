@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
+import checker from "vite-plugin-checker";
 
 import svgr from "@svgr/rollup";
 
@@ -13,6 +14,7 @@ export default defineConfig({
         legacy({
             additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
         }),
+        checker({ typescript: true }),
         svgr(),
     ],
     base: "./",

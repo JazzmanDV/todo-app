@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { State } from "../../redux/todosStore";
 
 const Counter = () => {
-    const todos = useSelector((state) => state.todos);
+    const todos = useSelector((state: State) => state.todos);
 
     const todosCount = todos.filter((val) => !val.isDone).length;
 
