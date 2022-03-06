@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "./ResetButton.module.css";
@@ -6,7 +6,7 @@ import styles from "./ResetButton.module.css";
 import { ReactComponent as ResetIcon } from "./reset-icon.svg";
 import { TodosActionTypes } from "../../redux/todosReducer";
 
-const ResetButton = () => {
+const ResetButton: FC = () => {
     const dispatch = useDispatch();
 
     return (

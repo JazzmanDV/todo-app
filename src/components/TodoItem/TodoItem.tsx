@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useLayoutEffect, TransitionEvent } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect, TransitionEvent, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./TodoItem.module.css";
@@ -8,12 +8,12 @@ import { ReactComponent as RemoveIcon } from "./remove-icon.svg";
 import { State } from "../../redux/todosStore";
 import { TodosActionTypes } from "../../redux/todosReducer";
 
-type TodoItemProps = {
+interface TodoItemProps {
     index: number;
     visible: boolean;
 };
 
-const TodoItem = (props: TodoItemProps) => {
+const TodoItem: FC<TodoItemProps> = (props) => {
     const todo = useSelector((state: State) => state.todos[props.index]);
     const dispatch = useDispatch();
 

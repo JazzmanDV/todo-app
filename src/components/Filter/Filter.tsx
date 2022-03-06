@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FilterActionTypes } from "../../redux/filterReducer";
 import { State } from "../../redux/todosStore";
 
 import styles from "./Filter.module.css";
 
-const Filter = () => {
+const Filter: FC = () => {
     const filter = useSelector((state: State) => state.filter);
     const dispatch = useDispatch();
 

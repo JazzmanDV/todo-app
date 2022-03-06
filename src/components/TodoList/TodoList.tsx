@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/todosStore";
 
@@ -6,7 +6,7 @@ import TodoItem from "../TodoItem/TodoItem";
 
 import styles from "./TodoList.module.css";
 
-const TodoList = () => {
+const TodoList: FC = () => {
     const todos = useSelector((state: State) => state.todos);
     const filter = useSelector((state: State) => state.filter);
 

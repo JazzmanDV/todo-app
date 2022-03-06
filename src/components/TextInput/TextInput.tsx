@@ -1,4 +1,4 @@
-import React, { useRef, ChangeEvent } from "react";
+import React, { useRef, ChangeEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 
 import styles from "./TextInput.module.css";
@@ -6,7 +6,7 @@ import styles from "./TextInput.module.css";
 import { ReactComponent as AddIcon } from "./add-icon.svg";
 import { TodosActionTypes } from "../../redux/todosReducer";
 
-const TextInput = () => {
+const TextInput: FC = () => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const dispatch = useDispatch();

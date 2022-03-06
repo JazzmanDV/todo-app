@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import Counter from "./components/Counter/Counter";
 import TextInput from "./components/TextInput/TextInput";
@@ -8,7 +8,7 @@ import ResetButton from "./components/ResetButton/ResetButton";
 
 import styles from "./App.module.css";
 
-const App = () => (
+const App: FC = () => (
     <div className={styles.app}>
         <div className={styles.wrapper}>
             <div className={styles.resetButtonWrapper}>
